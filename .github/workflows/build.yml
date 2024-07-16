@@ -14,14 +14,15 @@ jobs:
       #  run: export REPOSITORY=${{ github.repository }}
       #    echo "DOCKER_IMAGE_NAME=${REPOSITORY@L}" >> "$GITHUB_ENV"
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: ghcr.io/martinbolle/github-acions-workshop:latest
       - name: Login to GitHub Container Registry
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ github.token }}
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: ghcr.io/martinbolle/github-acions-workshop:latest
